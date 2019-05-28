@@ -1,0 +1,702 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FREELANCEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activiter">
+          <Key>
+            <PropertyRef Name="id_activiter" />
+          </Key>
+          <Property Name="id_activiter" Type="int" Nullable="false" />
+          <Property Name="id_job" Type="int" />
+          <Property Name="id_personne" Type="int" />
+          <Property Name="email_postuler" Type="nvarchar" MaxLength="50" />
+          <Property Name="datePostulation" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Competence">
+          <Key>
+            <PropertyRef Name="id_competence" />
+          </Key>
+          <Property Name="id_competence" Type="int" Nullable="false" />
+          <Property Name="id_personne" Type="int" />
+          <Property Name="nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Compte">
+          <Key>
+            <PropertyRef Name="id_Compte" />
+          </Key>
+          <Property Name="id_Compte" Type="int" Nullable="false" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Condidat">
+          <Key>
+            <PropertyRef Name="id_personne" />
+          </Key>
+          <Property Name="id_personne" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="cv" Type="nvarchar" MaxLength="50" />
+          <Property Name="gouvernorat" Type="nvarchar" MaxLength="50" />
+          <Property Name="tel" Type="int" />
+          <Property Name="sexe" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_competence" Type="int" />
+          <Property Name="competence" Type="nvarchar(max)" />
+          <Property Name="datenaissance" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="id_entreprise" />
+          </Key>
+          <Property Name="id_entreprise" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="nom_entreprise" Type="nvarchar" MaxLength="50" />
+          <Property Name="gouvernorat" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tel" Type="int" />
+          <Property Name="sexe" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_activité" Type="int" />
+          <Property Name="activite" Type="nvarchar(max)" />
+          <Property Name="datenaissance" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="id_job" />
+          </Key>
+          <Property Name="id_job" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="date" Type="nvarchar" MaxLength="50" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="name_annonceur" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="id_message" />
+          </Key>
+          <Property Name="id_message" Type="int" Nullable="false" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="nomMembre" Type="nvarchar" MaxLength="50" />
+          <Property Name="sujet" Type="nvarchar(max)" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="emetteur" Type="nvarchar" MaxLength="50" />
+          <Property Name="recepteur" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Postuler">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="int" Nullable="false" />
+          <Property Name="id_personne" Type="int" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" />
+          <Property Name="datePostulation" Type="nvarchar" MaxLength="50" />
+          <Property Name="budgee" Type="nvarchar" MaxLength="50" />
+          <Property Name="duree" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gouvernorat" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="tel" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="datenaissance" Type="nvarchar" MaxLength="50" />
+          <Property Name="sexe" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Condidat_Competence1">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="0..1" />
+          <End Role="Condidat" Type="Self.Condidat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="id_competence" />
+            </Principal>
+            <Dependent Role="Condidat">
+              <PropertyRef Name="id_competence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Activiter_dbo_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="Activiter" Type="Self.Activiter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="id_job" />
+            </Principal>
+            <Dependent Role="Activiter">
+              <PropertyRef Name="id_job" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Compte_dbo_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Compte" Type="Self.Compte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Compte">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Condidat_dbo_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Condidat" Type="Self.Condidat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Condidat">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Entreprise_dbo_Utilisateur1">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Entreprise">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Job_dbo_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Postuler_dbo_Condidat">
+          <End Role="Condidat" Type="Self.Condidat" Multiplicity="0..1" />
+          <End Role="Postuler" Type="Self.Postuler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Condidat">
+              <PropertyRef Name="id_personne" />
+            </Principal>
+            <Dependent Role="Postuler">
+              <PropertyRef Name="id_personne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FREELANCEModelStoreContainer">
+          <EntitySet Name="Activiter" EntityType="Self.Activiter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Competence" EntityType="Self.Competence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compte" EntityType="Self.Compte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Condidat" EntityType="Self.Condidat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Postuler" EntityType="Self.Postuler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Condidat_Competence1" Association="Self.FK_Condidat_Competence1">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="Condidat" EntitySet="Condidat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Activiter_dbo_Job" Association="Self.FK_dbo_Activiter_dbo_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="Activiter" EntitySet="Activiter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Compte_dbo_Utilisateur" Association="Self.FK_dbo_Compte_dbo_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Compte" EntitySet="Compte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Condidat_dbo_Utilisateur" Association="Self.FK_dbo_Condidat_dbo_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Condidat" EntitySet="Condidat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Entreprise_dbo_Utilisateur1" Association="Self.FK_dbo_Entreprise_dbo_Utilisateur1">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Entreprise" EntitySet="Entreprise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Job_dbo_Utilisateur" Association="Self.FK_dbo_Job_dbo_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Postuler_dbo_Condidat" Association="Self.FK_dbo_Postuler_dbo_Condidat">
+            <End Role="Condidat" EntitySet="Condidat" />
+            <End Role="Postuler" EntitySet="Postuler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Utilisateur" Association="Self.FK_Message_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FREELANCEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activiter">
+          <Key>
+            <PropertyRef Name="id_activiter" />
+          </Key>
+          <Property Name="id_activiter" Type="Int32" Nullable="false" />
+          <Property Name="id_job" Type="Int32" />
+          <Property Name="id_personne" Type="Int32" />
+          <Property Name="email_postuler" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="datePostulation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_dbo_Activiter_dbo_Job" FromRole="Activiter" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Competence">
+          <Key>
+            <PropertyRef Name="id_competence" />
+          </Key>
+          <Property Name="id_competence" Type="Int32" Nullable="false" />
+          <Property Name="id_personne" Type="Int32" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Condidat" Relationship="Self.FK_Condidat_Competence1" FromRole="Competence" ToRole="Condidat" />
+        </EntityType>
+        <EntityType Name="Compte">
+          <Key>
+            <PropertyRef Name="id_Compte" />
+          </Key>
+          <Property Name="id_Compte" Type="Int32" Nullable="false" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_dbo_Compte_dbo_Utilisateur" FromRole="Compte" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Condidat">
+          <Key>
+            <PropertyRef Name="id_personne" />
+          </Key>
+          <Property Name="id_personne" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gouvernorat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="Int32" />
+          <Property Name="sexe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_competence" Type="Int32" />
+          <Property Name="competence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="datenaissance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Competence1" Relationship="Self.FK_Condidat_Competence1" FromRole="Condidat" ToRole="Competence" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_dbo_Condidat_dbo_Utilisateur" FromRole="Condidat" ToRole="Utilisateur" />
+          <NavigationProperty Name="Postuler" Relationship="Self.FK_dbo_Postuler_dbo_Condidat" FromRole="Condidat" ToRole="Postuler" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="id_entreprise" />
+          </Key>
+          <Property Name="id_entreprise" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nom_entreprise" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gouvernorat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tel" Type="Int32" />
+          <Property Name="sexe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_activité" Type="Int32" />
+          <Property Name="activite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="datenaissance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_dbo_Entreprise_dbo_Utilisateur1" FromRole="Entreprise" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="id_job" />
+          </Key>
+          <Property Name="id_job" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="name_annonceur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Activiter" Relationship="Self.FK_dbo_Activiter_dbo_Job" FromRole="Job" ToRole="Activiter" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_dbo_Job_dbo_Utilisateur" FromRole="Job" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="id_message" />
+          </Key>
+          <Property Name="id_message" Type="Int32" Nullable="false" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="nomMembre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sujet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="emetteur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="recepteur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Message_Utilisateur" FromRole="Message" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Postuler">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="Int32" Nullable="false" />
+          <Property Name="id_personne" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="datePostulation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="budgee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="duree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Condidat" Relationship="Self.FK_dbo_Postuler_dbo_Condidat" FromRole="Postuler" ToRole="Condidat" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gouvernorat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="datenaissance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sexe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Compte" Relationship="Self.FK_dbo_Compte_dbo_Utilisateur" FromRole="Utilisateur" ToRole="Compte" />
+          <NavigationProperty Name="Condidat" Relationship="Self.FK_dbo_Condidat_dbo_Utilisateur" FromRole="Utilisateur" ToRole="Condidat" />
+          <NavigationProperty Name="Entreprise" Relationship="Self.FK_dbo_Entreprise_dbo_Utilisateur1" FromRole="Utilisateur" ToRole="Entreprise" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_dbo_Job_dbo_Utilisateur" FromRole="Utilisateur" ToRole="Job" />
+          <NavigationProperty Name="Message" Relationship="Self.FK_Message_Utilisateur" FromRole="Utilisateur" ToRole="Message" />
+        </EntityType>
+        <Association Name="FK_dbo_Activiter_dbo_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="Activiter" Type="Self.Activiter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="id_job" />
+            </Principal>
+            <Dependent Role="Activiter">
+              <PropertyRef Name="id_job" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Condidat_Competence1">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="0..1" />
+          <End Role="Condidat" Type="Self.Condidat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="id_competence" />
+            </Principal>
+            <Dependent Role="Condidat">
+              <PropertyRef Name="id_competence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Compte_dbo_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Compte" Type="Self.Compte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Compte">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Condidat_dbo_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Condidat" Type="Self.Condidat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Condidat">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Postuler_dbo_Condidat">
+          <End Role="Condidat" Type="Self.Condidat" Multiplicity="0..1" />
+          <End Role="Postuler" Type="Self.Postuler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Condidat">
+              <PropertyRef Name="id_personne" />
+            </Principal>
+            <Dependent Role="Postuler">
+              <PropertyRef Name="id_personne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Entreprise_dbo_Utilisateur1">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Entreprise">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Job_dbo_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FREELANCEEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activiter" EntityType="Self.Activiter" />
+          <EntitySet Name="Competence" EntityType="Self.Competence" />
+          <EntitySet Name="Compte" EntityType="Self.Compte" />
+          <EntitySet Name="Condidat" EntityType="Self.Condidat" />
+          <EntitySet Name="Entreprise" EntityType="Self.Entreprise" />
+          <EntitySet Name="Job" EntityType="Self.Job" />
+          <EntitySet Name="Message" EntityType="Self.Message" />
+          <EntitySet Name="Postuler" EntityType="Self.Postuler" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" />
+          <AssociationSet Name="FK_dbo_Activiter_dbo_Job" Association="Self.FK_dbo_Activiter_dbo_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="Activiter" EntitySet="Activiter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Condidat_Competence1" Association="Self.FK_Condidat_Competence1">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="Condidat" EntitySet="Condidat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Compte_dbo_Utilisateur" Association="Self.FK_dbo_Compte_dbo_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Compte" EntitySet="Compte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Condidat_dbo_Utilisateur" Association="Self.FK_dbo_Condidat_dbo_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Condidat" EntitySet="Condidat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Postuler_dbo_Condidat" Association="Self.FK_dbo_Postuler_dbo_Condidat">
+            <End Role="Condidat" EntitySet="Condidat" />
+            <End Role="Postuler" EntitySet="Postuler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Entreprise_dbo_Utilisateur1" Association="Self.FK_dbo_Entreprise_dbo_Utilisateur1">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Entreprise" EntitySet="Entreprise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Job_dbo_Utilisateur" Association="Self.FK_dbo_Job_dbo_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Utilisateur" Association="Self.FK_Message_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FREELANCEModelStoreContainer" CdmEntityContainer="FREELANCEEntities1">
+          <EntitySetMapping Name="Activiter">
+            <EntityTypeMapping TypeName="FREELANCEModel.Activiter">
+              <MappingFragment StoreEntitySet="Activiter">
+                <ScalarProperty Name="id_activiter" ColumnName="id_activiter" />
+                <ScalarProperty Name="id_job" ColumnName="id_job" />
+                <ScalarProperty Name="id_personne" ColumnName="id_personne" />
+                <ScalarProperty Name="email_postuler" ColumnName="email_postuler" />
+                <ScalarProperty Name="datePostulation" ColumnName="datePostulation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Competence">
+            <EntityTypeMapping TypeName="FREELANCEModel.Competence">
+              <MappingFragment StoreEntitySet="Competence">
+                <ScalarProperty Name="id_competence" ColumnName="id_competence" />
+                <ScalarProperty Name="id_personne" ColumnName="id_personne" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compte">
+            <EntityTypeMapping TypeName="FREELANCEModel.Compte">
+              <MappingFragment StoreEntitySet="Compte">
+                <ScalarProperty Name="id_Compte" ColumnName="id_Compte" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Condidat">
+            <EntityTypeMapping TypeName="FREELANCEModel.Condidat">
+              <MappingFragment StoreEntitySet="Condidat">
+                <ScalarProperty Name="id_personne" ColumnName="id_personne" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="cv" ColumnName="cv" />
+                <ScalarProperty Name="gouvernorat" ColumnName="gouvernorat" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="sexe" ColumnName="sexe" />
+                <ScalarProperty Name="id_competence" ColumnName="id_competence" />
+                <ScalarProperty Name="competence" ColumnName="competence" />
+                <ScalarProperty Name="datenaissance" ColumnName="datenaissance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entreprise">
+            <EntityTypeMapping TypeName="FREELANCEModel.Entreprise">
+              <MappingFragment StoreEntitySet="Entreprise">
+                <ScalarProperty Name="id_entreprise" ColumnName="id_entreprise" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nom_entreprise" ColumnName="nom_entreprise" />
+                <ScalarProperty Name="gouvernorat" ColumnName="gouvernorat" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="sexe" ColumnName="sexe" />
+                <ScalarProperty Name="id_activité" ColumnName="id_activité" />
+                <ScalarProperty Name="activite" ColumnName="activite" />
+                <ScalarProperty Name="datenaissance" ColumnName="datenaissance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job">
+            <EntityTypeMapping TypeName="FREELANCEModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="id_job" ColumnName="id_job" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name_annonceur" ColumnName="name_annonceur" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="FREELANCEModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="id_message" ColumnName="id_message" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="nomMembre" ColumnName="nomMembre" />
+                <ScalarProperty Name="sujet" ColumnName="sujet" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="emetteur" ColumnName="emetteur" />
+                <ScalarProperty Name="recepteur" ColumnName="recepteur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postuler">
+            <EntityTypeMapping TypeName="FREELANCEModel.Postuler">
+              <MappingFragment StoreEntitySet="Postuler">
+                <ScalarProperty Name="id_post" ColumnName="id_post" />
+                <ScalarProperty Name="id_personne" ColumnName="id_personne" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="datePostulation" ColumnName="datePostulation" />
+                <ScalarProperty Name="budgee" ColumnName="budgee" />
+                <ScalarProperty Name="duree" ColumnName="duree" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FREELANCEModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateur">
+            <EntityTypeMapping TypeName="FREELANCEModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="gouvernorat" ColumnName="gouvernorat" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="datenaissance" ColumnName="datenaissance" />
+                <ScalarProperty Name="sexe" ColumnName="sexe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
