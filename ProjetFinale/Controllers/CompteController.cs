@@ -18,34 +18,25 @@ namespace ProjetFinale.Controllers
     {
         Traittement trait = new Traittement();
         private FREELANCEEntities1 db = new FREELANCEEntities1();
-        public JsonResult Get()
+        [System.Web.Http.Route("api/Compte")]
+        public IHttpActionResult GetCOMP()
         {
-            List<Compte> list = trait.ListeComptes();
-            return new JsonResult()
-            {
-                Data = list,
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
-        }
+            List<ProjetFinale.Compte> list = db.Compte.ToList();
+            return Ok(list);
 
-        // GET: api/Compte
-        public IQueryable<Compte> GetCompte()
-        {
-            return db.Compte;
         }
-
-        // GET: api/Compte/5
-        [ResponseType(typeof(Compte))]
+        [System.Web.Http.Route("api/Compte/{id:int}")]
         public IHttpActionResult GetCompte(int id)
         {
-            Compte compte = db.Compte.Find(id);
-            if (compte == null)
+            ProjetFinale.Compte COMP = db.Compte.Find(id);
+            if (COMP == null)
             {
                 return NotFound();
             }
 
-            return Ok(compte);
+            return Ok(COMP);
         }
+
 
         // PUT: api/Compte/5
         [ResponseType(typeof(void))]

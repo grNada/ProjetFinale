@@ -18,14 +18,31 @@ namespace ProjetFinale.Controllers
     {
         Traittement trait = new Traittement();
         private FREELANCEEntities1 db = new FREELANCEEntities1();
+        
 
-        public IHttpActionResult Get()
+        [System.Web.Http.Route("api/Entreprise")]
+        public IHttpActionResult GetE()
         {
-            List<Entreprise> list = trait.ListeEntreprises();
+            List<ProjetFinale.Entreprise> list = db.Entreprise.ToList();
             return Ok(list);
 
         }
-       
+        [System.Web.Http.Route("api/Entreprise/{id:int}")]
+        public IHttpActionResult GetEntreprise(int id)
+        {
+            ProjetFinale.Entreprise E = db.Entreprise.Find(id);
+            if (E == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(E);
+        }
+
+
+        // PUT: api/Postuler/5
+  
+
         // GET: api/Entreprise
         /*public IQueryable<Entreprise> GetEntreprise()
         {

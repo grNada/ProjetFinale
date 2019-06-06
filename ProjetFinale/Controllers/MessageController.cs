@@ -6,11 +6,15 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Mvc;
+using Microsoft.AspNet.SignalR.Messaging;
 using ProjetFinale;
 using ProjetFinale.Models;
+using Twilio.TwiML.Messaging;
 
 namespace ProjetFinale.Controllers
 {
@@ -18,32 +22,23 @@ namespace ProjetFinale.Controllers
     {
         Traittement trait = new Traittement();
         private FREELANCEEntities1 db = new FREELANCEEntities1();
-        public JsonResult Get()
+        [System.Web.Http.Route("api/Message")]
+        public IHttpActionResult GetM()
         {
-            List<Message> list = trait.ListeMessages();
-            return new JsonResult()
-            {
-                Data = list,
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
-        }
-        // GET: api/Message
-        public IQueryable<Message> GetMessage()
-        {
-            return db.Message;
-        }
+            List<ProjetFinale.Message> list = db.Message.ToList();
+            return Ok(list);
 
-        // GET: api/Message/5
-        [ResponseType(typeof(Message))]
+        }
+        [System.Web.Http.Route("api/Message/{id:int}")]
         public IHttpActionResult GetMessage(int id)
         {
-            Message message = db.Message.Find(id);
-            if (message == null)
+            ProjetFinale.Message COMP = db.Message.Find(id);
+            if (COMP == null)
             {
                 return NotFound();
             }
 
-            return Ok(message);
+            return Ok(COMP);
         }
 
         // PUT: api/Message/5
@@ -141,4 +136,5 @@ namespace ProjetFinale.Controllers
             return db.Message.Count(e => e.id_message == id) > 0;
         }
     }
+ 
 }

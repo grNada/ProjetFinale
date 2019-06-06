@@ -19,38 +19,26 @@ namespace ProjetFinale.Controllers
     {
         Traittement trait = new Traittement();
         private FREELANCEEntities1 db = new FREELANCEEntities1();
-
-        public JsonResult Get()
+        [System.Web.Http.Route("api/Activiter")]
+        public IHttpActionResult GetACT()
         {
-            List<Activiter> list = trait.ListeActiviters();
-            return new JsonResult()
-            {
-                Data = list,
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
-
-
+            List<ProjetFinale.Activiter> list = db.Activiter.ToList();
+            return Ok(list);
 
         }
-        // GET: api/Activiter
-        public IQueryable<Activiter> GetActiviter()
-        {
-            return db.Activiter;
-        }
-
-        // GET: api/Activiter/5
-        [ResponseType(typeof(Activiter))]
+        [System.Web.Http.Route("api/Activiter/{id:int}")]
         public IHttpActionResult GetActiviter(int id)
         {
-            Activiter activiter = db.Activiter.Find(id);
-            if (activiter == null)
+            ProjetFinale.Activiter ACT = db.Activiter.Find(id);
+            if (ACT == null)
             {
                 return NotFound();
             }
 
-            return Ok(activiter);
+            return Ok(ACT);
         }
 
+    
         // PUT: api/Activiter/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutActiviter(int id, Activiter activiter)

@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8134347da270430fbeb33acb30d73b8f" Name="Diagram1">
-        <EntityTypeShape EntityType="FREELANCEModel.Activiter" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FREELANCEModel.Competence" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+      <Diagram DiagramId="b0736cc7a21c4740bce4e2f62cab34b6" Name="Diagram1">
+        <EntityTypeShape EntityType="FREELANCEModel.Activiter" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FREELANCEModel.Competence" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FREELANCEModel.Compte" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="FREELANCEModel.Condidat" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FREELANCEModel.Entreprise" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FREELANCEModel.Condidat" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FREELANCEModel.Entreprise" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FREELANCEModel.Job" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FREELANCEModel.Message" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FREELANCEModel.Postuler" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FREELANCEModel.Message" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FREELANCEModel.Postuler" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FREELANCEModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FREELANCEModel.Utilisateur" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FREELANCEModel.Utilisateur" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
         <AssociationConnector Association="FREELANCEModel.FK_dbo_Activiter_dbo_Job" ManuallyRouted="false" />
         <AssociationConnector Association="FREELANCEModel.FK_Condidat_Competence1" ManuallyRouted="false" />
         <AssociationConnector Association="FREELANCEModel.FK_dbo_Compte_dbo_Utilisateur" ManuallyRouted="false" />

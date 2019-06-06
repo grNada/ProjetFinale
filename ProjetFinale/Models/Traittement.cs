@@ -1,4 +1,5 @@
-﻿using ProjetFinale.Models;
+﻿using ProjetFinale.Controllers;
+using ProjetFinale.Models;
 
 using System;
 using System.Collections;
@@ -68,6 +69,12 @@ namespace ProjetFinale.Models
             }
             return ouput;
         }
+
+        internal List<Controllers.CondidatController> GetCand()
+        {
+            throw new NotImplementedException();
+        }
+
         public static bool retournbool(object value)
         {
             bool ouput = false;
@@ -481,6 +488,40 @@ namespace ProjetFinale.Models
                 return null;
             }
         }
+        public Condidat GetCand(string username)
+        {
+            Condidat lignes = new Condidat();
+
+            string chaine = chaine_connexion_Traitement();
+            ConnexionDB.MaConn = new SqlConnection(chaine);
+            string query = "SELECT *FROM Condidat where username = " + username + "";
+            DataAdapter da = ConnexionDB.GetResultSql(query, ConnexionDB.MaConn);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                lignes.id_personne = retournInt(ds.Tables[0].Rows[i]["id_personne"].ToString());
+                lignes.id_user = int.Parse(ds.Tables[0].Rows[i]["id_user"].ToString());
+                lignes.email = ds.Tables[0].Rows[i]["email"].ToString();
+                lignes.password = ds.Tables[0].Rows[i]["password"].ToString();
+                lignes.username = ds.Tables[0].Rows[i]["username"].ToString();
+                lignes.cv = ds.Tables[0].Rows[i]["cv"].ToString();
+                lignes.gouvernorat = ds.Tables[0].Rows[i]["gouvernorat"].ToString();
+                lignes.tel = int.Parse(ds.Tables[0].Rows[i]["tel"].ToString());
+                lignes.sexe = ds.Tables[0].Rows[i]["sexe"].ToString();
+                lignes.id_competence = int.Parse(ds.Tables[0].Rows[i]["id_competence"].ToString());
+                lignes.competence = ds.Tables[0].Rows[i]["competence"].ToString();
+                lignes.datenaissance = ds.Tables[0].Rows[i]["datenaissance"].ToString();
+
+
+
+
+            }
+            return lignes;
+
+        }
+
         public string GetPasswordUser(int code)
         {
 
@@ -532,6 +573,7 @@ namespace ProjetFinale.Models
             return lignes;
 
         }
+
         public bool ajout_Candidat(ref string erreur, Condidat pers)
         {
             string Connect = chaine_connexion_Traitement();
@@ -1109,7 +1151,8 @@ namespace ProjetFinale.Models
                 lignes.name_annonceur = ds.Tables[0].Rows[i]["name_annonceur"].ToString();
                 lignes.phone = ds.Tables[0].Rows[i]["phone"].ToString();
                 lignes.email = ds.Tables[0].Rows[i]["email"].ToString();
-
+                lignes.budgee = ds.Tables[0].Rows[i]["budgee"].ToString();
+                lignes.duree = ds.Tables[0].Rows[i]["duree"].ToString();
 
             }
             return lignes;
@@ -1124,7 +1167,7 @@ namespace ProjetFinale.Models
             List<SqlCommand> listescmd = new List<SqlCommand>();
             if (j.id_job == 0)
             {
-                cmd.CommandText = "INSERT INTO [dbo].[Job]([id_job],[id_user],[date],[title],[description],[name_annonceur],[phone],[email])VALUES('" + j.id_job + "','" + j.id_user + "','" + j.date + "','" + j.title + "','" + j.description  + "','" + j.name_annonceur + "','" + j.phone + "','" + j.email +  "' )";
+                cmd.CommandText = "INSERT INTO [dbo].[Job]([id_job],[id_user],[date],[title],[description],[name_annonceur],[phone],[email],[budgee],[duree])VALUES('" + j.id_job + "','" + j.id_user + "','" + j.date + "','" + j.title + "','" + j.description  + "','" + j.name_annonceur + "','" + j.phone + "','" + j.email + "','" + j.budgee+ "','" + j.duree + "' )";
                 listescmd.Add(cmd);
             }
             else
@@ -1135,7 +1178,9 @@ namespace ProjetFinale.Models
                     ",[description]= '" + j.description +
                     ",[name_annonceur]= '" + j.name_annonceur +
                     ",[phone]= '" + j.phone +
-                    ",[email] = '" + j.email
+                    ",[email] = '" + j.email+
+                    ",[budgee] = '" + j.budgee+
+                    ",[duree] = '" + j.duree
                     + "'  where ([id_job]=" + j.id_job + ") ";
                 listescmd.Add(cmd);
                 cmd = new SqlCommand();
@@ -1157,7 +1202,9 @@ namespace ProjetFinale.Models
                    ",[description]= '" + j.description +
                    ",[name_annonceur]= '" + j.name_annonceur +
                    ",[phone]= '" + j.phone +
-                   ",[email] = '" + j.email
+                   ",[email] = '" + j.email+
+                    ",[budgee] = '" + j.duree+
+                     ",[budgee] = '" + j.duree
                    + "'  where ([id_job]=" + j.id_job + ") ";
             listescmd.Add(cmd);
             cmd = new SqlCommand();
@@ -1197,6 +1244,8 @@ namespace ProjetFinale.Models
                 lignes.name_annonceur = ds.Tables[0].Rows[i]["name_annonceur"].ToString();
                 lignes.phone = ds.Tables[0].Rows[i]["phone"].ToString();
                 lignes.email = ds.Tables[0].Rows[i]["email"].ToString();
+                lignes.budgee = ds.Tables[0].Rows[i]["budgee"].ToString();
+                lignes.duree = ds.Tables[0].Rows[i]["duree"].ToString();
 
                 liste.Add(lignes);
             }

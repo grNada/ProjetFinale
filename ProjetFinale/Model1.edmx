@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="id_activiter" />
           </Key>
-          <Property Name="id_activiter" Type="int" Nullable="false" />
+          <Property Name="id_activiter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_job" Type="int" />
           <Property Name="id_personne" Type="int" />
           <Property Name="email_postuler" Type="nvarchar" MaxLength="50" />
@@ -19,7 +19,7 @@
           <Key>
             <PropertyRef Name="id_competence" />
           </Key>
-          <Property Name="id_competence" Type="int" Nullable="false" />
+          <Property Name="id_competence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_personne" Type="int" />
           <Property Name="nom" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -27,7 +27,7 @@
           <Key>
             <PropertyRef Name="id_Compte" />
           </Key>
-          <Property Name="id_Compte" Type="int" Nullable="false" />
+          <Property Name="id_Compte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_user" Type="int" />
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="password" Type="nchar" MaxLength="10" />
@@ -77,12 +77,14 @@
           <Property Name="name_annonceur" Type="nvarchar" MaxLength="50" />
           <Property Name="phone" Type="nvarchar" MaxLength="50" />
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="budgee" Type="nvarchar" MaxLength="50" />
+          <Property Name="duree" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
             <PropertyRef Name="id_message" />
           </Key>
-          <Property Name="id_message" Type="int" Nullable="false" />
+          <Property Name="id_message" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_user" Type="int" />
           <Property Name="nomMembre" Type="nvarchar" MaxLength="50" />
           <Property Name="sujet" Type="nvarchar(max)" />
@@ -94,7 +96,7 @@
           <Key>
             <PropertyRef Name="id_post" />
           </Key>
-          <Property Name="id_post" Type="int" Nullable="false" />
+          <Property Name="id_post" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_personne" Type="int" />
           <Property Name="description" Type="nvarchar" MaxLength="50" />
           <Property Name="datePostulation" Type="nvarchar" MaxLength="50" />
@@ -272,7 +274,7 @@
           <Key>
             <PropertyRef Name="id_activiter" />
           </Key>
-          <Property Name="id_activiter" Type="Int32" Nullable="false" />
+          <Property Name="id_activiter" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_job" Type="Int32" />
           <Property Name="id_personne" Type="Int32" />
           <Property Name="email_postuler" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -283,7 +285,7 @@
           <Key>
             <PropertyRef Name="id_competence" />
           </Key>
-          <Property Name="id_competence" Type="Int32" Nullable="false" />
+          <Property Name="id_competence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_personne" Type="Int32" />
           <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Condidat" Relationship="Self.FK_Condidat_Competence1" FromRole="Competence" ToRole="Condidat" />
@@ -292,7 +294,7 @@
           <Key>
             <PropertyRef Name="id_Compte" />
           </Key>
-          <Property Name="id_Compte" Type="Int32" Nullable="false" />
+          <Property Name="id_Compte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_user" Type="Int32" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -347,6 +349,8 @@
           <Property Name="name_annonceur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="budgee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="duree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Activiter" Relationship="Self.FK_dbo_Activiter_dbo_Job" FromRole="Job" ToRole="Activiter" />
           <NavigationProperty Name="Utilisateur" Relationship="Self.FK_dbo_Job_dbo_Utilisateur" FromRole="Job" ToRole="Utilisateur" />
         </EntityType>
@@ -354,7 +358,7 @@
           <Key>
             <PropertyRef Name="id_message" />
           </Key>
-          <Property Name="id_message" Type="Int32" Nullable="false" />
+          <Property Name="id_message" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_user" Type="Int32" />
           <Property Name="nomMembre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sujet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -367,7 +371,7 @@
           <Key>
             <PropertyRef Name="id_post" />
           </Key>
-          <Property Name="id_post" Type="Int32" Nullable="false" />
+          <Property Name="id_post" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_personne" Type="Int32" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="datePostulation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -624,6 +628,8 @@
                 <ScalarProperty Name="name_annonceur" ColumnName="name_annonceur" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="budgee" ColumnName="budgee" />
+                <ScalarProperty Name="duree" ColumnName="duree" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

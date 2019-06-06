@@ -6,10 +6,13 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.Results;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using ProjetFinale;
 using ProjetFinale.Models;
 
@@ -22,7 +25,7 @@ namespace ProjetFinale.Controllers
         [System.Web.Http.Route("api/Condidat")]
         public IHttpActionResult Get()
         {
-            List<Condidat> list = db.Condidat.ToList();
+            List<ProjetFinale.Condidat> list = db.Condidat.ToList();
             return Ok(list);
 
         }
@@ -34,20 +37,24 @@ namespace ProjetFinale.Controllers
             return Ok(listEmail);
 
         }
-
-        /*// GET: api/Condidat
-        public IQueryable<Condidat> GetCondidat()
+        [System.Web.Http.Route("api/Condidat/username")]
+        public IHttpActionResult getUserName()
         {
-            return db.Condidat;
+            List<string> listEmail = db.Condidat.ToList().Select(x => x.username).ToList();
+
+            return Ok(listEmail);
+
         }
-        */
-
-        // GET: api/Condidat/5
-        [ResponseType(typeof(Condidat))]
-        [System.Web.Http.Route("api/Condidat/{id:int}")]
-        public IHttpActionResult GetCondidat(int id)
+       /* [System.Web.Http.Route("api/Condidat/{username:string}")]
+        public IHttpActionResult GetCondidat(string username)
         {
-            Condidat condidat = db.Condidat.Find(id);
+            ProjetFinale.Condidat condidat = trait.GetCand(username);
+            return Ok(condidat);
+    }*/
+        /*[System.Web.Http.Route("api/Condidat/{username:string}")]
+        public IHttpActionResult GetCondidat(string username)
+        {
+            ProjetFinale.Condidat condidat = db.Condidat.Find("username");
             if (condidat == null)
             {
                 return NotFound();
@@ -55,10 +62,32 @@ namespace ProjetFinale.Controllers
 
             return Ok(condidat);
         }
-        
+        */
+
+            /*// GET: api/Condidat
+            public IQueryable<Condidat> GetCondidat()
+            {
+                return db.Condidat;
+            }
+            */
+
+            // GET: api/Condidat/5
+        [ResponseType(typeof(ProjetFinale.Condidat))]
+        [System.Web.Http.Route("api/Condidat/{id:int}")]
+        public IHttpActionResult GetCondidat(int id)
+        {
+            ProjetFinale.Condidat condidat = db.Condidat.Find(id);
+            if (condidat == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(condidat);
+        }
+
         // PUT: api/Condidat/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCondidat(int id, Condidat condidat)
+        public IHttpActionResult PutCondidat(int id, ProjetFinale.Condidat condidat)
         {
             if (!ModelState.IsValid)
             {
@@ -90,10 +119,10 @@ namespace ProjetFinale.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-       
+
         // POST: api/Condidat
-        [ResponseType(typeof(Condidat))]
-        public IHttpActionResult PostCondidat(Condidat condidat)
+        [ResponseType(typeof(ProjetFinale.Condidat))]
+        public IHttpActionResult PostCondidat(ProjetFinale.Condidat condidat)
         {
             if (!ModelState.IsValid)
             {
@@ -101,16 +130,16 @@ namespace ProjetFinale.Controllers
             }
 
             db.Condidat.Add(condidat);
-          db.SaveChanges();
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = condidat.id_personne }, condidat);
         }
 
         // DELETE: api/Condidat/5
-        [ResponseType(typeof(Condidat))]
+        [ResponseType(typeof(ProjetFinale.Condidat))]
         public IHttpActionResult DeleteCondidat(int id)
         {
-            Condidat condidat = db.Condidat.Find(id);
+            ProjetFinale.Condidat condidat = db.Condidat.Find(id);
             if (condidat == null)
             {
                 return NotFound();
@@ -136,4 +165,7 @@ namespace ProjetFinale.Controllers
             return db.Condidat.Count(e => e.id_personne == id) > 0;
         }
     }
+
+
+
 }

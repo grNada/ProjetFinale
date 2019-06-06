@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Mvc;
+
 using ProjetFinale;
 using ProjetFinale.Models;
 
@@ -18,29 +19,27 @@ namespace ProjetFinale.Controllers
     {
         Traittement trait = new Traittement();
         private FREELANCEEntities1 db = new FREELANCEEntities1();
-        public IHttpActionResult GetPostuler()
+      
+        [System.Web.Http.Route("api/Postuler")]
+        public IHttpActionResult Get()
         {
-
-            List<Postuler> list = trait.ListePostulers();
+            List<ProjetFinale.Postuler> list = db.Postuler.ToList();
             return Ok(list);
+
+        }
+        [System.Web.Http.Route("api/Postuler/{id:int}")]
+        public IHttpActionResult GetPostuler(int id)
+        {
+            ProjetFinale.Postuler postuler = db.Postuler.Find(id);
+            if (postuler == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(postuler);
         }
 
-
-        /* // GET: api/Postuler
-         public IQueryable<Postuler> GetPostuler()
-         {
-             return db.Postuler;
-         }
-
-         // GET: api/Postuler/5
-         [ResponseType(typeof(Postuler))]
-         public IHttpActionResult GetPostuler()
-         {
-
-             List<Postuler> list = trait.ListePostulers();
-             return Ok(list);
-         }
-         */
+        
         // PUT: api/Postuler/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPostuler(int id, Postuler postuler)

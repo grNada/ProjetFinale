@@ -18,31 +18,26 @@ namespace ProjetFinale.Controllers
     {
         Traittement trait = new Traittement();
         private FREELANCEEntities1 db = new FREELANCEEntities1();
-        public IHttpActionResult GetCompetence()
+        [System.Web.Http.Route("api/Competence")]
+        public IHttpActionResult GetCOM()
         {
-            List<Competence> list = trait.ListeCompetences();
+            List<ProjetFinale.Competence> list = db.Competence.ToList();
             return Ok(list);
-        }
 
-        // GET: api/Competence
-       /* public IQueryable<Competence> GetCompetence()
-        {
-            return db.Competence;
         }
-
-        // GET: api/Competence/5
-        [ResponseType(typeof(Competence))]
+        [System.Web.Http.Route("api/Competence/{id:int}")]
         public IHttpActionResult GetCompetence(int id)
         {
-            Competence competence = db.Competence.Find(id);
-            if (competence == null)
+            ProjetFinale.Competence COM = db.Competence.Find(id);
+            if (COM == null)
             {
                 return NotFound();
             }
 
-            return Ok(competence);
+            return Ok(COM);
         }
-        */
+
+       
         // PUT: api/Competence/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCompetence(int id, Competence competence)
